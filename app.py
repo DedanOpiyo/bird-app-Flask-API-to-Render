@@ -18,6 +18,11 @@ db.init_app(app)
 
 api = Api(app)
 
+# Alternatively use Index class, get method that returns message in object, and status code.
+@app.route('/')
+def index():
+    return "Welcome to the Bird API. Try /birds"
+
 class Birds(Resource):
 
     def get(self):
@@ -25,3 +30,11 @@ class Birds(Resource):
         return make_response(jsonify(birds), 200)
 
 api.add_resource(Birds, '/birds')
+
+# New Resource
+class BirdByID(Resource):
+    def get(self, id):
+        bird = Bird.query.filter_by(id=id).first().to_dict()
+        return make_response(jsonify(bird), 200)
+
+api.add_resource(BirdByID, '/birds/<int:id>')
