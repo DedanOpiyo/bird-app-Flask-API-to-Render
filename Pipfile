@@ -12,6 +12,9 @@ flask-migrate = "*"
 sqlalchemy-serializer = "*"
 flask-restful = "*"
 
+requests = "*"
+
+
 [dev-packages]
 
 [requires]
